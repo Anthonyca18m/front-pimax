@@ -20,7 +20,7 @@ const routes = [
         component: AuthLayout,
         meta: { isGuest: true },
         children: [
-            { path: "/login", name: "Login", component: () => import('@/views/LoginView.vue'), },
+            { path: "/login", name: "Login", component: () => import('@/views/LoginView.vue'), },            
         ]
     },
     {
@@ -66,9 +66,14 @@ const routes = [
             {
                 path: ":name",
                 name: 'AppMenu',
-                component: () => import('@/views/DashboardView.vue'),
+                component: () => import('@/views/ModuleView.vue'),
             },
         ],
+    },
+    {
+        path: "/asistencia",
+        name: 'Asistencia',
+        component: () => import('@/views/AsistenciaView.vue'),
     },
     {
         path: '/404',

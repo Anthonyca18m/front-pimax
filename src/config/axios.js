@@ -22,6 +22,8 @@ ac.interceptors.request.use(config => {
 ac.interceptors.response.use(response => {
     return response
     }, error => {
+        if (error.response.data.message.includes('JWT')) return Util.logoutExpired()
+        // if (error.response.status === 500) return Util.againBlock()
         return Promise.reject(error)
 })
 

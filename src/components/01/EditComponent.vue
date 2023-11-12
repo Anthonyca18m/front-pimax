@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>usuario</label>
-                            <input v-model.trim="fedit.username" type="text" :class="(errors.username) ? 'form-control is-invalid' : 'form-control'">
+                            <input v-model.trim="fedit.username" type="text" :class="(errors.username) ? 'form-control is-invalid' : 'form-control'" :disabled="fedit.id == store.getters.getUser.id">
                             <span v-if="errors.username" class="text-danger">{{ errors.username[0] }}</span>
                         </div>
                         <div class="col-md-12">
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>Estado</label>
-                            <select v-model.trim="fedit.status" :class="(errors.status) ? 'form-control is-invalid' : 'form-control'">
+                            <select v-model.trim="fedit.status" :class="(errors.status) ? 'form-control is-invalid' : 'form-control'" :disabled="fedit.id == store.getters.getUser.id">
                                 <option value="1">ACTIVO</option>
                                 <option value="0">INACTIVO</option>
                             </select>
@@ -48,6 +48,7 @@
 
 <script setup>
     import { ref, watch } from 'vue'
+    import store from '@/config/store'
 
     let fedit = ref({
         id: '',

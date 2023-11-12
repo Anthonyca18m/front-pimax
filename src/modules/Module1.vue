@@ -45,7 +45,7 @@
                                 <button @click="$refs.edit.getEdit(d.id)" class="btn btn-sm btn-light mx-1 border" title="Editar">
                                     <i class="far fa-edit"></i>
                                 </button>
-                                <button @click="question(d.id)" class="btn btn-sm btn-light mx-1 border" title="Eliminar">
+                                <button v-if="d.id != store.getters.getUser.id" @click="question(d.id)" class="btn btn-sm btn-light mx-1 border" title="Eliminar">
                                     <i class="far fa-trash"></i>
                                 </button>
                             </td>
