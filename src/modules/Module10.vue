@@ -27,9 +27,7 @@
                     <thead class="text-center">
                         <tr>                  
                             <th>ID</th>          
-                            <th>HORA DE ENTRADA</th>
-                            <th>HORA DE SALIDA</th>                            
-                            <th>TOLERANCIA</th>
+                            <th>NOMBRE</th>
                             <th>F.REGISTRO</th>
                             <th>ACCIONES</th>
                         </tr>
@@ -37,10 +35,8 @@
                     <tbody>
                         <tr v-for="(d,i) in list" :key="i">
                             <td align="center">{{ d.id }}</td>
-                            <td align="center">{{ d.hour_in }}</td>
-                            <td align="center">{{ d.hour_out }}</td>                            
-                            <td align="center">{{ d.tolerancia }} minuto(s)</td>
-                            <td>{{ $filters.date(d.created_at, 'YYYY-MM-DD HH:mm:ss a') }}</td>
+                            <td align="center">{{ d.area }}</td>
+                            <td align="center">{{ $filters.date(d.created_at, 'YYYY-MM-DD HH:mm:ss a') }}</td>
                             <td align="center">
                                 <button @click="$refs.edit.getEdit(d.id)" class="btn btn-sm btn-light mx-1 border" title="Editar">
                                     <i class="far fa-edit"></i>
@@ -60,10 +56,10 @@
     <EditComponent ref="edit" @saveOn="getList"/>
 </template>
 <script setup>
-    import RegisterComponent from '@/components/09/RegisterComponent.vue'
-    import EditComponent from '@/components/09/EditComponent.vue'
+    import RegisterComponent from '@/components/10/RegisterComponent.vue'
+    import EditComponent from '@/components/10/EditComponent.vue'
     import { ref, onMounted, watch, defineComponent } from 'vue'
-    import storeOption from '@/config/store/options'    
+    import storeOption from '@/config/store/options'
 
     defineComponent({
         components: {
@@ -80,7 +76,7 @@
 
     const getList = () => {
         Util.load(true)
-        ac.get('/api/v1/horarios', { params: filters.value })
+        ac.get('/api/v1/areas', { params: filters.value })
             .then(({data}) => {
                 Util.load(false)
                 list.value = data
@@ -92,7 +88,7 @@
 
     const initDataTable = () => {
         Util.resetDataTable('#module1', { orderable: false, order: [], searching: false, pageLength: 10, dom:"Bfrtip",
-        buttons: [{ extend: 'excel', text: 'Exportar Datos a Excel', title: 'LISTA DE HORARIOS' }]  })
+        buttons: [{ extend: 'excel', text: 'Exportar Datos a Excel', title: 'LISTA DE AREAS' }]  })
     }
 
     const resetFilter = () => {
@@ -119,13 +115,13 @@
 
     const destroy = (id) => {
         Util.load(true)
-        ac.delete(`/api/v1/horarios/${id}`)
+        ac.delete(`/api/v1/areas/${id}`)
             .then(({data}) => {
                 Util.load(false)                
                 if (data) {
                     Toast.fire({ icon: "success", title: "Se ha eliminado con éxito!.", })
                 } else {
-                    Toast.fire({ icon: "error", title: 'El Horario tiene contratos relacionados, no puede ser eliminado.' })    
+                    Toast.fire({ icon: "error", title: 'El Área tiene empleados relacionados, no puede ser eliminado.' })    
                 }
                 getList()
             }).catch((err) => {

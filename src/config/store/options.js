@@ -8,6 +8,8 @@ const storeOption = createStore ({
             {id: 1, name : 'Lista de Usuarios',     slug : 'lista-de-usuarios',     component: 'Module1' },
             {id: 2, name : 'Lista de Trabajadores', slug : 'lista-de-trabajadores', component: 'Module2' },
             {id: 9, name : 'Lista de Horarios',     slug : 'lista-de-horarios',     component: 'Module9' },
+            {id: 9, name : 'Lista de Áreas',        slug : 'lista-de-areas',        component: 'Module10' },
+            {id: 9, name : 'Tipos de Contrato',     slug : 'tipos-de-contrato',     component: 'Module11' },
             {id: 3, name : 'Registros de Entrada',  slug : 'registros-de-entrada',  component: 'Module3' },
             {id: 4, name : 'Registros de Salida',   slug : 'registros-de-salida',   component: 'Module4' },
             {id: 5, name : 'Log Logins',            slug : 'log-logins',            component: 'Module5' },
