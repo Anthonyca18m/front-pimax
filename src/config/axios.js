@@ -12,6 +12,15 @@ const ac = axios.create({
     xsrfCookieName: 'XSRF-TOKEN',
 });
 
+const ac2 = axios.create({
+    baseURL: baseURL,
+    headers: {
+        'X-Requested-With' : 'XMLHttpRequest',
+    },
+    withCredentials: false,
+    xsrfCookieName: 'XSRF-TOKEN',
+});
+
 ac.interceptors.request.use(config => {
     if (store.state.user.token != null && store.state.user.token != 'null') {
         config.headers.Authorization = `Bearer ${store.state.user.token}`   
@@ -29,4 +38,5 @@ ac.interceptors.response.use(response => {
 
 
 window.ac = ac
+window.ac2 = ac2
 

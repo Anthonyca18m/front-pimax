@@ -19,6 +19,18 @@
                                 </router-link>                              
                             </div>
                         </div>
+                        <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                            REPORTES
+                        </div> 
+                        <div>
+                            <div v-for="m,i in storeOption.getters.getReports" :key="i">
+                                <router-link :to="{ name: 'AppMenu', params: { name: m.slug } }"
+                                    :class="(m.slug == route.params.name) ? 'nav-link px-3 active': 'nav-link px-3'">
+                                        <span class="me-2"><i class=""></i></span>
+                                        <span class="m-name">{{ m.name }}</span>
+                                </router-link>                              
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -38,6 +50,18 @@
                         </div>                        
                         <div>
                             <div v-for="m,i in storeOption.getters.getMenu" :key="i">
+                                <router-link :to="{ name: 'AppMenu', params: { name: m.slug } }"
+                                    :class="(m.slug == route.params.name) ? 'nav-link px-3 active': 'nav-link px-3'">
+                                        <span class="me-2"><i class=""></i></span>
+                                        <span class="m-name">{{ m.name }}</span>
+                                </router-link>                              
+                            </div>
+                        </div>
+                        <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+                            REPORTES
+                        </div> 
+                        <div>
+                            <div v-for="m,i in storeOption.getters.getReports" :key="i">
                                 <router-link :to="{ name: 'AppMenu', params: { name: m.slug } }"
                                     :class="(m.slug == route.params.name) ? 'nav-link px-3 active': 'nav-link px-3'">
                                         <span class="me-2"><i class=""></i></span>
