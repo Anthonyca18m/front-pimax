@@ -71,18 +71,18 @@
     </div>
 
     <RegisterComponent ref="reg" @saveOn="getList"/>
-    <EditComponent ref="edit" @saveOn="getList"/>
+    <!-- <EditComponent ref="edit" @saveOn="getList"/> -->
 </template>
 <script setup>
-    import RegisterComponent from '@/components/10/RegisterComponent.vue'
-    import EditComponent from '@/components/10/EditComponent.vue'
+    import RegisterComponent from '@/components/03/RegisterComponent.vue'
+    // import EditComponent from '@/components/03/EditComponent.vue'
     import { ref, onMounted, watch, defineComponent } from 'vue'
     import storeOption from '@/config/store/options'
 
     defineComponent({
         components: {
             RegisterComponent,
-            EditComponent,
+            // EditComponent,
         }
     })
     

@@ -51,9 +51,9 @@
                             <td align="center">{{ d.area.area }}</td>
                             <td align="center">{{ d.name }}</td>
                             <td align="center">{{ d.document }}</td>
-                            <td align="center">{{ d.contrato.type.name }}</td>
-                            <td align="center">                                
-                                <span v-if="d.contrato.status == 1" class="badge bg-success">VIGENTE</span>
+                            <td align="center">{{ (d.contrato != null) ? d.contrato.type.name: '' }}</td>
+                            <td align="center">
+                                <span v-if="(d.contrato && d.contrato.status == 1)" class="badge bg-success">VIGENTE</span>
                                 <span v-else class="badge bg-danger">VENCIDO</span>
                             </td>                            
                             <td align="center">{{ (d.status == 1) ? 'ACTIVO':'INACTIVO' }}</td>
