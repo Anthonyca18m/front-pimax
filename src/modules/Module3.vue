@@ -54,7 +54,7 @@
                     <tbody>
                         <tr v-for="(d,i) in list" :key="i">
                             <td align="center">{{ d[1] }}</td>
-                            <td align="center">{{ d[2] }}</td>
+                            <td align="center">{{ $filters.date(d[2], 'YYYY-MM-DD HH:mm:ss a') }}</td>
                             <td align="center">{{ d[3] }}</td>
                             <td align="center">{{ d[4] }}</td>
                             <td align="center">{{ (d[4] == 'AUTOMATICO') ? '-': d[5] }}</td>
@@ -108,7 +108,7 @@
 
     const initDataTable = () => {
         Util.resetDataTable('#module1', { orderable: false, order: [], searching: false, pageLength: 10, dom:"Bfrtip",
-        buttons: [{ extend: 'excel', text: 'Exportar Datos a Excel', title: 'LISTA DE ASSITENCIA' }]  })
+        buttons: [{ extend: 'excel', text: 'Exportar Datos a Excel', title: 'LISTA DE ASISTENCIA' }]  })
     }
 
     const resetFilter = () => {

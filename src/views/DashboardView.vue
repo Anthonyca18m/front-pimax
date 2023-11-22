@@ -22,11 +22,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <i :class="`icon-widget ${w.widget_icon}`"></i>
+                                        <i :class="`icon-widget ${w[1]}`"></i>
                                     </div>
                                     <div class="col-lg-8">
-                                        <h6>{{ w.widget_name }}</h6>
-                                        <p>{{ w.widget_data }}</p>
+                                        <h6>{{ w[0] }}</h6>
+                                        <p>{{ w[2] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -35,23 +35,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <div class="container-graphic">
                                         <canvas id="graphic-1"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <div class="container-graphic">
-                                        <canvas id="graphic-2"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -76,68 +65,36 @@
 
     import { ref, onMounted } from 'vue'
 
-    let widgets = ref([
-        { widget_icon: 'far fa-user', widget_name: 'Usuarios', widget_data: 1 },
-        { widget_icon: 'far fa-users', widget_name: 'Empleados', widget_data: 1 },
-        { widget_icon: 'far fa-calendar', widget_name: 'Horarios', widget_data: 1 },
-        { widget_icon: 'far fa-clipboard-list', widget_name: 'Contratos', widget_data: 1 },
-        { widget_icon: 'far fa-user-lock', widget_name: 'Sesiones', widget_data: 1 },
-        { widget_icon: 'far fa-cctv', widget_name: 'Movimientos', widget_data: 1 },
-    ])
-    let d1 = ref({})
-    let d2 = ref({})
+    let widgets = ref([])
     let chart = ref({})
     let org = ref(false)
 
+    const getWidges = () => {
+        Util.load(true)
+        ac2.get('api/v1/reports/widgets')
+            .then(({data}) => {
+                widgets.value = data
+            })
+            .catch((err) => {})
+            .finally(() => {
+                Util.load(false)
+            })
+    }
+
+    const getData1 = () => {
+        Util.load(true)
+        ac2.get('api/v1/reports/gpc-tardanzas')
+            .then(({data}) => {                
+                graphic(data)
+            })
+            .catch((err) => {})
+            .finally(() => {
+                Util.load(false)
+            })
+    }
+
     const getData = () => {
-        const data_g1 = [
-            {
-                "MES": "2023-01",
-                "TARDANZA": "90",
-                "ASISTENCIA": "0",                    
-                "TOTAL": "90"
-            },
-            {
-                "MES": "2023-02",
-                "TARDANZA": "115",
-                "ASISTENCIA": "50",                    
-                "TOTAL": "165"
-            },
-            {
-                "MES": "2023-03",
-                "TARDANZA": "28",
-                "ASISTENCIA": "2",
-                "TOTAL": "30"
-            },
-            
-        ]
-
-        const data_g2 = [
-            {
-                "AREA": "area 1",                 
-                "TOTAL": "90",
-                "COLOR": "blue",
-            },
-            {
-                "AREA": "area 2",                  
-                "TOTAL": "30",
-                "COLOR": "yellow",
-            },
-            {
-                "AREA": "area 1",
-                "TOTAL": "30",
-                "COLOR": "red",
-            },
-            {
-                "AREA": "area 3",
-                "TOTAL": "30",
-                "COLOR": "green",
-            },
-            
-        ]
-
-        graphic(data_g1)
-        graphic2(data_g2)
+        getData1()
     }
 
 
@@ -180,39 +137,9 @@
             })            
     }
 
-    const graphic2 = (data) => {
-        if (org.value) chart.value.destroy()
-
-        chart.value = new Chart(
-            document.getElementById('graphic-2'),
-            {
-                type: 'pie',
-                data: {
-                        labels: data.map(row => row.AREA),
-                        datasets: [
-                            {
-                                label: "Registro de Asistencias",
-                                fill: 'origin',
-                                data: data.map(row => row.TOTAL),
-                                backgroundColor: data.map(row => row.COLOR),                                
-                            },
-                        ]
-                },
-                options: {
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'GRÁFICO DE CONTROL DE ASISTENCIAS POR AREA DE HOY'
-                            },
-                        },                        
-                        responsive: true,
-                        aspectRatio: 0,
-                }
-            })            
-    }
-
     onMounted(() => {
         getData()
+        getWidges()
     })
 
 </script>
