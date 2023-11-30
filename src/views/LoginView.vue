@@ -7,7 +7,7 @@
                         <div class="app-brand justify-content-center">
                             <a class="app-brand-link gap-2">
                                 <span class="app-brand-logo demo">
-                                    <img :src="$getSrc('/images/vite.svg')" alt="Sodimac" width="100">
+                                    <img :src="$getSrc('/images/vite.svg')" width="100">
                                 </span>
                             </a>
                         </div>
