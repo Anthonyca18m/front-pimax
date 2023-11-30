@@ -15,8 +15,8 @@ const storeOption = createStore ({
             {id: 6, type: 1, name : 'Log Movimientos',                                                 slug : 'log-movimientos',       component: 'Module6' },
             {id: 7, type: 1, name : 'Acerca de',                                                       slug : 'acerca-de',             component: 'Module7' },
 
-            {id: 101, type: 2, name : 'Asistencias Por Empleado',                                      slug : 'asistencias-empleado',  component: 'Report1' },
-            {id: 102, type: 2, name : 'Reporte 2',           slug : 'reportes-2',            component: 'Report2' },
+            {id: 101, type: 2, name : 'Asistencia Por Empleado',                                       slug : 'asistencia-por-empleado',  component: 'Report1' },
+            {id: 102, type: 2, name : 'Asistencia Por Area',                                           slug : 'asistencia-por-area',      component: 'Report2' },
             {id: 103, type: 2, name : 'Reporte 3',           slug : 'reportes-3',            component: 'Report3' },
             {id: 104, type: 2, name : 'Reporte 4',           slug : 'reportes-4',            component: 'Report4' },
         ],

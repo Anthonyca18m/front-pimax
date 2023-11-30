@@ -113,7 +113,7 @@
                 fedit.value.name = data.body.name
                 fedit.value.document = data.body.document
                 fedit.value.status = data.body.status
-                fedit.value.area_id = data.body.area.id
+                fedit.value.area_id = data.body.contrato.area.id
                 fedit.value.jornada_id = data.body.contrato.type.id
                 fedit.value.horario_id = data.body.contrato.horario_id
                 fedit.value.dateInit = moment(data.body.contrato.date_init).format('YYYY-MM-DD')

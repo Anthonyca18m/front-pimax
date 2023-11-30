@@ -48,7 +48,7 @@
                     <tbody>
                         <tr v-for="(d,i) in list" :key="i">
                             <td align="center">{{ d.code }}</td>
-                            <td align="center">{{ d.area.area }}</td>
+                            <td align="center">{{ (d.contrato.area) ? d.contrato.area.area: '' }}</td>
                             <td align="center">{{ d.name }}</td>
                             <td align="center">{{ d.document }}</td>
                             <td align="center">{{ (d.contrato != null) ? d.contrato.type.name: '' }}</td>
