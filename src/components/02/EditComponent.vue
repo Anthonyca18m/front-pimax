@@ -171,6 +171,9 @@
             }).catch((err) => {                
                 Util.load(false)
                 errors.value = (err.response.status == 422) ? err.response.data.errors : []
+                if (err.response.status == 500) {
+                    Swal.fire({title: 'Por favor revisar los datos ingresados.', icon: 'error'})
+                }
             })
     }
 

@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-md-12">
                             <label>DNI/PASAPORTE</label>
-                            <input v-model.trim="fedit.document" type="text" :class="(errors.document) ? 'form-control is-invalid' : 'form-control'">
+                            <input v-model.trim="fedit.document" type="text" :class="(errors.document) ? 'form-control is-invalid' : 'form-control'" maxlength="8">
                             <span v-if="errors.document" class="text-danger">{{ errors.document[0] }}</span>
                         </div>
                         <div class="col-md-12">
@@ -49,6 +49,7 @@
 <script setup>
     import { ref, watch } from 'vue'
     import store from '@/config/store'
+import Swal from 'sweetalert2';
 
     let fedit = ref({
         id: '',
@@ -91,7 +92,7 @@
                 emit('saveOn')
             }).catch((err) => {                
                 Util.load(false)
-                errors.value = (err.response.status == 422) ? err.response.data.errors : []
+                errors.value = (err.response.status == 422) ? err.response.data.errors : []                
             })
     }
 
